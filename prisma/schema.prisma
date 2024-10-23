@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  EMPLOYEE
+}
+
+enum Provider {
+  GOOGLE
+  CREDENTIALS
+}
+
+model Organisation {
+  id      String             @id @default(cuid())
+  name    String
+  members UserOrganisation[]
+
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id       String  @id @default(cuid())
+  name     String
+  email    String  @unique
+  password String?
+
+  provider      String?
+  organisations UserOrganisation[]
+
+  createdAt DateTime @default(now())
+}
+
+model UserOrganisation {
+  userId         String
+  organisationId String
+  todoId         String
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organisation Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  todo         Todo[]
+
+  role Role
+
+  @@unique([userId, organisationId])
+}
+
+model Todo {
+  id          String @id @default(cuid())
+  title       String
+  description String
+
+  organisationId   String
+  userId           String
+  userOrganisation UserOrganisation @relation(fields: [userId, organisationId], references: [userId, organisationId], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  deadLine  DateTime
+}
