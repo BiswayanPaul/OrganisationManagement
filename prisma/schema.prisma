@@ -47,7 +47,7 @@ model User {
 model UserOrganisation {
   userId         String
   organisationId String
-  todoId         String
+  todoId         String?
 
   user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   organisation Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
@@ -69,4 +69,6 @@ model Todo {
 
   createdAt DateTime @default(now())
   deadLine  DateTime
+
+  @@unique([id, userId, organisationId])
 }

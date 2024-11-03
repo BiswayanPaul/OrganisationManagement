@@ -14,6 +14,7 @@ export default function Home() {
     await SignOut();
   }
 
+
   useEffect(() => {
     if (session.status === "unauthenticated") {
       router.replace("/auth/signin");
@@ -30,6 +31,11 @@ export default function Home() {
       {session.data?.user?.email}
       {session.data?.user?.name}
       <Button onClick={handleSignout}>Sign Out</Button>
+
+
+      <div>
+
+      </div>
     </main>
   );
 }

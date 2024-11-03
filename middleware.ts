@@ -6,7 +6,9 @@ import {
     authRoutes
 } from "@/routes";
 
-export default auth((req) => {
+// import db from "@/lib/db"
+
+export default auth(async (req) => {
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
 
@@ -15,21 +17,21 @@ export default auth((req) => {
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
 
     if (isApiAuthRoutes) {
-        return;  // Don't return `null`, return `undefined` (i.e., no response needed)
+        return;
     }
 
     if (isAuthRoutes) {
         if (isLoggedIn) {
             return Response.redirect(new URL(DEFAUL_LOGIN_REDIRECT, nextUrl));
         }
-        return;  // Same here, avoid `null`
+        return;
     }
 
     if (!isLoggedIn && !isPublicRoutes) {
         return Response.redirect(new URL("/auth/signin", nextUrl));
     }
 
-    return;  // Ensure `undefined` is returned by default
+    return;
 });
 
 export const config = {

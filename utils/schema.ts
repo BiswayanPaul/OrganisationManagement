@@ -21,3 +21,15 @@ export const GoogleSigninSchema = z.object({
     email: z.string().email({ message: "Email is Required" }),
     provider: z.string()
 })
+
+export const TodoSchema = z.object({
+    title: z.string().min(3, { message: "Minimum 3 characters required" }),
+    description: z.string().max(100, { message: "Max 100 Characters allowed" }),
+    organisationId: z.string(),
+    userId: z.string(),
+    deadLine: z.date()
+})
+
+export const OrganisationSchema = z.object({
+    name: z.string() // Name must be at least 1 character
+});

@@ -20,6 +20,7 @@ import { SignInSchema } from "@/utils/schema"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { FcGoogle } from "react-icons/fc";
 import { SignInWithCredentials, SignInWithGoogle } from "@/actions/Signin"
+import { useRouter } from "next/navigation"
 
 
 export default function SignInPage() {
@@ -32,6 +33,8 @@ export default function SignInPage() {
         },
     })
 
+    const route = useRouter();
+
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof SignInSchema>) {
 
@@ -40,6 +43,9 @@ export default function SignInPage() {
         try {
             const response = await SignInWithCredentials(values);
             console.log({ response })
+            if (response.success) {
+                route.refresh();
+            }
         }
         catch (err) {
             console.error(err)
