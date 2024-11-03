@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Organisation Dashboard
+
+Welcome to the Organisation Dashboard project! This web application allows users to view, interact with, and manage organizations they are part of. It provides an intuitive interface for displaying organization details, including creation dates, and allows for interaction through clickable cards for viewing and deletion.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- View a list of organizations with their names and creation dates.
+- Clickable organization cards for detailed interaction.
+- Delete organizations with a simple button click.
+- Responsive design for optimal viewing on various devices.
+
+## Technologies Used
+
+- **Frontend:**
+  - React
+  - Next.js
+  - TypeScript
+  - Tailwind CSS (for styling)
+- **Backend:**
+  - Node.js
+  - Express
+  - Prisma (for database interactions)
+- **Database:**
+  - PostgreSQL
 
 ## Getting Started
 
-First, run the development server:
+To run this project locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the repository:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/yourusername/organisation-dashboard.git
+   cd organisation-dashboard
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Install dependencies:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Set up the environment variables:**
 
-To learn more about Next.js, take a look at the following resources:
+   Create a `.env` file in the root directory and add the necessary environment variables. Here's an example structure:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```env
+   DATABASE_URL=your_database_url
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Run the development server:**
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   Your application should now be running at `http://localhost:3000`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Usage
+
+After starting the application, navigate to the dashboard to view the list of organizations. You can click on an organization card to log its ID and use the delete button to remove an organization (currently, this action logs the ID to the console).
+
+## API Endpoints
+
+- **GET /api/organisation/get**
+  - Retrieves the list of organizations for the user.
+- **DELETE /api/organisation/delete/:id**
+  - Deletes the specified organization by ID.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps to contribute to this project:
+
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+## License
+
+No License till now.
+
+---
+
+Thank you for checking out the Organisation Dashboard project! For any questions or feedback, feel free to reach out.
