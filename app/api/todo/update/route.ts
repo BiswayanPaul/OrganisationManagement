@@ -25,5 +25,5 @@ export const PUT = async (data: TodoUpdateProps) => {
         return Response.json({ todo })
 
 
-    } catch (err) { console.error(err) }
+    } catch (err) { console.log(err) }
 }

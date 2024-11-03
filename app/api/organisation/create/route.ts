@@ -9,10 +9,8 @@ export const POST = async (req: Request) => {
     const session = await auth();
     console.log(session);
     const email = session?.user?.email;
-    console.log(email);
 
     const data = await req.json();
-    console.log(data);
 
     if (!email) {
         return NextResponse.json({ "error": "Not Authenticated" }, { status: 401 }); // Change to 401
@@ -20,7 +18,6 @@ export const POST = async (req: Request) => {
 
     try {
         const unvalid_name = data.name;
-        console.log(unvalid_name);
         const validate = OrganisationSchema.safeParse({ name: unvalid_name });
 
         if (!validate.success) {
@@ -63,7 +60,7 @@ export const POST = async (req: Request) => {
         return NextResponse.json({ org }, { status: 201 }); // Change to 201
 
     } catch (err) {
-        console.error(err);
+        console.log(err);
         return NextResponse.json({ "error": err }, { status: 500 }); // Keep as 500
     }
 };

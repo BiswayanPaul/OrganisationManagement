@@ -44,7 +44,7 @@ export default function SignUpPage() {
             console.log({ response })
         }
         catch (err) {
-            console.error(err)
+            console.log(err)
         }
     }
 
@@ -52,7 +52,7 @@ export default function SignUpPage() {
         try {
             await SignInWithGoogle();
         } catch (err) {
-            console.error(err)
+            console.log(err)
         }
     }
 

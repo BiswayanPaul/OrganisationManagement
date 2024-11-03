@@ -38,6 +38,6 @@ export const POST = async (data: TodoCreateProps) => {
 
         return Response.json({ todo })
 
-    } catch (err) { console.error(err) }
+    } catch (err) { console.log(err) }
 
 }

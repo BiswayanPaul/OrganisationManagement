@@ -32,6 +32,8 @@ export default function Sidebar() {
         dispatch(toggleSidebar()); // Dispatch the toggle action
     };
 
+    // FIXME: continuous reload is occuring
+
     useEffect(() => {
         // Initial values (optional)
         const sideBarItems = ["item1", "item2", "item3", "item4"];
@@ -47,24 +49,25 @@ export default function Sidebar() {
                 // Check if the response is OK
                 if (!res.ok) {
                     const text = await res.text(); // Get the raw response for logging
-                    console.error(`HTTP error! status: ${res.status}, response: ${text}`);
+                    console.log(`HTTP error! status: ${res.status}, response: ${text}`);
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
 
                 const data = await res.json();
-                console.log(data);
 
                 // Assuming data.userOrganisations is an array of organization objects
                 // Each object in data.userOrganisations has a `name` property
                 const organisationNames = data.userOrganisations.map((org: Organisation) => org.name);
                 setOrganisation(organisationNames);
             } catch (error) {
-                console.error('Failed to fetch organizations:', error);
+                console.log('Failed to fetch organizations:', error);
             }
         }
 
         getRes();
-    }, []);
+    }, [organisation]);
+
+    // TODO: Here I need to use redux state management to update the organisation in this sidebar and remove continuous reload.
 
     const handleSignOut = async () => {
         await SignOut();

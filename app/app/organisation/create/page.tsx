@@ -13,13 +13,12 @@ import z from "zod";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function CreateOrg() {
 
     const isOpen = useSelector((state: { sidebar: SidebarState }) => state.sidebar.isOpen);
     const [loading, setLoading] = useState<boolean>(false);
-    const router = useRouter();
+
 
     const form = useForm<z.infer<typeof OrganisationSchema>>({
         resolver: zodResolver(OrganisationSchema),
@@ -52,8 +51,6 @@ export default function CreateOrg() {
             console.log("Organisation Created:", data);
             toast.success("Organisation created successfully!");
             form.reset();
-
-            router.push("/app/dashboard")
         } catch (error) {
             console.log(error)
             toast.error("An error occurred while creating the organisation.");

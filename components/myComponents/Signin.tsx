@@ -48,7 +48,7 @@ export default function SignInPage() {
             }
         }
         catch (err) {
-            console.error(err)
+            console.log(err)
         }
     }
 
@@ -56,7 +56,7 @@ export default function SignInPage() {
         try {
             await SignInWithGoogle();
         } catch (err) {
-            console.error(err)
+            console.log(err)
         }
     }
 

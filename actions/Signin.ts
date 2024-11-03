@@ -24,7 +24,7 @@ export async function SignInWithCredentials({
         });
         return { success: "Logged in successfully" };
     } catch (error) {
-        console.error("SignIn Error:", error);
+        console.log("SignIn Error:", error);
         return { error: "An unexpected error occurred" };
     }
 }

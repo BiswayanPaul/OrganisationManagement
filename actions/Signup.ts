@@ -32,7 +32,7 @@ export async function SignUp(values: z.infer<typeof SignUpSchema>) {
 
         return { "success": "User Created", newUser }
     } catch (error) {
-        console.error("Sign Up Error:", error);
+        console.log("Sign Up Error:", error);
         return { error }
     }
 }
