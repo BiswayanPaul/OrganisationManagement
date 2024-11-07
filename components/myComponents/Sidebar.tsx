@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
-import { RxViewVertical } from "react-icons/rx";
+import { RxPlus, RxViewVertical } from "react-icons/rx";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "@/utils/sidebarSlice"; // Adjust the import path
 import { SidebarState } from "@/utils/types";
 import { Organisation } from "@prisma/client";
+import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 
 export default function Sidebar() {
     const isOpen = useSelector((state: { sidebar: SidebarState }) => state.sidebar.isOpen);
@@ -65,7 +66,7 @@ export default function Sidebar() {
         }
 
         getRes();
-    }, [organisation]);
+    }, []);
 
     // TODO: Here I need to use redux state management to update the organisation in this sidebar and remove continuous reload.
 
@@ -80,6 +81,7 @@ export default function Sidebar() {
                 style={{ overflow: "hidden" }}
             >
                 <div className="flex flex-col justify-start items-start gap-3 p-2 flex-grow">
+
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild className="w-40">
                             <Button variant="outline">Organisations</Button>
@@ -102,8 +104,15 @@ export default function Sidebar() {
                                     {org}
                                 </DropdownMenuCheckboxItem>
                             ))}
+                            <DropdownMenuSeparator />
+                            <Link href="/app/organisation/create">
+                                <DropdownMenuItem className="w-40 text-sm flex items-center justify-center gap-2 text-gray-500 hover:text-gray-900">
+                                    <RxPlus className="w-4 h-4" /> Add New
+                                </DropdownMenuItem>
+                            </Link>
                         </DropdownMenuContent>
                     </DropdownMenu>
+
                     <div>
                         <ul className="flex flex-col justify-center items-center text-center">
                             {sideBarItem.map((item) => (
